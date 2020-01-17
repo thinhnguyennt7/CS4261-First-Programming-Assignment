@@ -3,6 +3,5 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 setInterval(async () => {
-    // await HTTP.get(process.env.HOST + '/awake');
-    console.log('Waking up the server');
+    await HTTP.get(process.env.HOST + '/v1/awake');
 }, 1740000);

@@ -1,3 +1,7 @@
-const testRoutes = require('../routes/test-route/test.route.js');
+const testRoute = require('../routes/test.route.js');
+const accountRoute = require('../routes/account.route.js');
 
-module.exports = { testRoutes };
+module.exports = {
+	testRoute,
+	accountRoute
+};

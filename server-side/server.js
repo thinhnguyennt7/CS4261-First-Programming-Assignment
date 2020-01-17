@@ -10,7 +10,8 @@ const app = express();
 app.use(middleware);
 
 // Initialize route paths
-app.use('/', apiRoutes.testRoutes);
+app.use('/', apiRoutes.testRoute);
+app.use('/', apiRoutes.accountRoute);
 
 // Start the server
 app.listen(process.env.PORT || 8080, () => console.log(`Server listening at port: ${process.env.PORT || 8080}`));
