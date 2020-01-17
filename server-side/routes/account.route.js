@@ -22,4 +22,9 @@ router.route(`${config.ACCOUNT_PATH}/:username`)
 		controller.updateUserByUsername(req.params.username, req.body, res);
 	});
 
+router.route(`${config.ACCOUNT_PATH}/verify/:username&:password`)
+	.get((req, res) => {
+		controller.verifyPassword(req.params.username, req.params.password, res);
+	});
+
 module.exports = router;

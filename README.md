@@ -19,6 +19,16 @@
 	```
 	npm install ; npm start
 	```
+* Here are some endpoints
+	```
+	GET  /v1/test  | Test the server
+	GET  /v1/awake  | Awake heroku server
+	GET  /v1/account  | Get all user accounts
+	POST /v1/account  | Add new user
+	GET  /v1/account/:username  | Get user detail by id
+	PUT  /v1/account/:username  | Update user by id
+	GET  /v1/account/verify/:username&:password  | Get password compare
+	```
 
 ### Frontend App 🖥
 * Change your directory to `client-side`

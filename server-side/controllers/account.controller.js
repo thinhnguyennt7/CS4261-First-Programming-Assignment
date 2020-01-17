@@ -3,6 +3,7 @@ const shortid = require('shortid');
 const Account = require('../models/account.model.js');
 const database = require('../config/database.js');
 const config = require('../config/config.js');
+const authen = require('../services/authentication.service.js');
 const handleMessage = require('../services/reponse.service.js');
 
 
@@ -22,7 +23,7 @@ exports.addNewUser = (async (object, res) => {
 	const newUser = new Account(object.name,
 		object.username,
 		object.email,
-		object.password,
+		authen.decodePassword(object.password),
 		object.phone,
 		object.dob
 	);
@@ -49,5 +50,23 @@ exports.updateUserByUsername = (async (username, object, res) => {
 		}
 	}).catch(err => {
 		return handleMessage.error('Invalid reference on firebase');
+	});
+});
+
+
+exports.verifyPassword = ((username, password, res) => {
+	database.ref(config.ACCOUNTS).child(username).once('value').then(response => {
+		if (response.val() !== null) {
+			const verifyStatus = authen.verifyPassword(password, response.val().password);
+			if (verifyStatus) {
+				return handleMessage.success('Valid password', res);
+			} else {
+				return handleMessage.failure('Invalid password', res);
+			}
+		} else {
+			return handleMessage.failure('User does not exist on firebase', res);
+		}
+	}).catch(err => {
+		return handleMessage.error('Error during query');
 	});
 });
