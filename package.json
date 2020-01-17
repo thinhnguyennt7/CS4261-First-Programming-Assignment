@@ -1,0 +1,22 @@
+{
+  "name": "cs4261-first-programming-assignment",
+  "version": "1.0.0",
+  "description": "CS4261: First Assignment Program",
+  "main": "server.js",
+  "scripts": {
+    "start": "cd server-side/ && npm install && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinhnguyennt7/CS4261-First-Programming-Assignment.git"
+  },
+  "author": "Thinh + Tuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinhnguyennt7/CS4261-First-Programming-Assignment/issues"
+  },
+  "engines": {
+    "node": "11.x"
+  },
+  "homepage": "https://github.com/thinhnguyennt7/CS4261-First-Programming-Assignment#readme"
+}
