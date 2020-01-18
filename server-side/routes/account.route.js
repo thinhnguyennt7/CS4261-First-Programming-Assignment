@@ -20,6 +20,10 @@ router.route(`${config.ACCOUNT_PATH}/:username`)
 
 	.put((req, res) => {
 		controller.updateUserByUsername(req.params.username, req.body, res);
+	})
+
+	.delete((req, res) => {
+		controller.deleteUserByUsername(req.params.username, res);
 	});
 
 router.route(`${config.ACCOUNT_PATH}/verify/:username&:password`)

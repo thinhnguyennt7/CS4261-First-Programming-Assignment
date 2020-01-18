@@ -70,3 +70,17 @@ exports.verifyPassword = ((username, password, res) => {
 		return handleMessage.error('Error during query');
 	});
 });
+
+
+exports.deleteUserByUsername = ((username, res) => {
+	database.ref(config.ACCOUNTS).child(username).once('value').then(response => {
+		if (response.val() !== null) {
+			database.ref(config.ACCOUNTS).child(username).remove();
+			return handleMessage.success('Removed user', res);
+		} else {
+			return handleMessage.failure('Username does not exist on firebase', res);
+		}
+	}).catch(err => {
+		return handleMessage.error('Error during query. Reference tree might be wrong');
+	});
+});
