@@ -21,6 +21,7 @@
 	```
 * Here are some endpoints
 	```
+	Main URL: https://cs4261-assignment.herokuapp.com/
 	GET  /v1/test  | Test the server
 	GET  /v1/awake  | Awake heroku server
 	GET  /v1/account  | Get all user accounts
@@ -28,6 +29,12 @@
 	GET  /v1/account/:username  | Get user detail by id
 	PUT  /v1/account/:username  | Update user by id
 	GET  /v1/account/verify/:username&:password  | Get password compare
+	```
+* Other dashboards view
+	```
+	Github: https://github.com/thinhnguyennt7/CS4261-First-Programming-Assignment
+	Heroku Dashboard: https://dashboard.heroku.com/apps/cs4261-assignment
+	Firebase: https://console.firebase.google.com/u/0/project/cs4261-d4866/database/cs4261-d4866/data
 	```
 
 ### Frontend App 🖥
