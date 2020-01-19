@@ -26,9 +26,9 @@ router.route(`${config.ACCOUNT_PATH}/:username`)
 		controller.deleteUserByUsername(req.params.username, res);
 	});
 
-router.route(`${config.ACCOUNT_PATH}/verify/:username&:password`)
-	.get((req, res) => {
-		controller.verifyPassword(req.params.username, req.params.password, res);
+router.route(`${config.ACCOUNT_PATH}/verify`)
+	.post((req, res) => {
+		controller.verifyPassword(req.body.username, req.body.password, res);
 	});
 
 module.exports = router;
