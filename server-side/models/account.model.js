@@ -1,11 +1,7 @@
 class Account {
-	constructor(name, username, email, password, phone, dob) {
-		this.name = name;
+	constructor(username, password) {
 		this.username = username;
-		this.email = email;
 		this.password = password;
-		this.phone = phone;
-		this.dob = dob;
 	};
 };
 

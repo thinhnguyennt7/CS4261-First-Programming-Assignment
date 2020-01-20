@@ -20,13 +20,7 @@ exports.getUserByUsername = (async (username, res) => {
 
 
 exports.addNewUser = (async (object, res) => {
-	const newUser = new Account(object.name,
-		object.username,
-		object.email,
-		authen.decodePassword(object.password),
-		object.phone,
-		object.dob
-	);
+	const newUser = new Account(object.username, authen.decodePassword(object.password));
 	database.ref(config.ACCOUNTS).child(object.username).once('value').then(response => {
 		if (response.val() === null) {
 			database.ref(config.ACCOUNTS).child(object.username).set(newUser);
