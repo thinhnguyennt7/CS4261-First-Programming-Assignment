@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private httpClient: HttpClientService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   test() {
     console.log(this.form)
@@ -48,6 +47,7 @@ export class LoginComponent implements OnInit {
     } else if (event.index == 1) {
       this.tab = "register";
     }
+    this.reset();
   }
 
   reset(): void {
@@ -88,15 +88,6 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    // var data = {
-    //   username: this.username,
-    //   password: this.password,
-    //   name: this.name,
-    //   phone: this.phone,
-    //   dob: this.dob,
-    //   email: this.email
-    // }
-    // console.log(data)
     this.httpClient.post("/v1/account", {
       username: this.username,
       password: this.password,

@@ -1,11 +1,13 @@
+const authen = require('../services/authentication.service.js');
+
 class Account {
-	constructor(username, password, optional) {
-		this.name = optional;
-		this.username = username;
-		this.password = password;
-		this.dob = optional;
-		this.phone = optional;
-		this.email = optional;
+	constructor(object) {
+		this.name = (object.name) ? object.name : 'N/A';
+		this.username = object.username;
+		this.password = authen.decodePassword(object.password);
+		this.dob = (object.dob) ? object.dob : 'N/A';
+		this.phone = (object.phone) ? object.phone : 'N/A';
+		this.email = (object.email) ? object.email : 'N/A';
 	};
 };
 
