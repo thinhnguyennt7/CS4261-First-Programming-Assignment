@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public dob: string = "";
   public phone: string = "";
   public name: string = "";
+  public error: boolean = false;
   form = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -31,6 +32,14 @@ export class LoginComponent implements OnInit {
   constructor(private httpClient: HttpClientService) { }
 
   ngOnInit() {
+  }
+
+  test() {
+    console.log(this.form)
+  }
+
+  onChanges() {
+    console.log(this.form);
   }
 
   loginTabClick(event: any): void {
@@ -51,30 +60,60 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.httpClient.get("/v1/account").subscribe((data) => {
-      console.log(data);
+    this.error = false;
+    this.httpClient.post("/v1/account/verify", {
+      username: this.username,
+      password: this.password
+    }).subscribe((res) => {
+      if (res.status == "true") {
+        this.tab = "info";
+        this.httpClient.get("/v1/account/" + this.username).subscribe(res => {
+          var data = res.data;
+          this.username = data.username;
+          this.password = data.password;
+          this.email = data.email || "N/A";
+          this.phone = data.phone || "N/A";
+          this.dob = data.dob || "N/A";
+          this.name = data.name || "N/A";
+        })
+      } else {
+        this.error = true;
+      }
     })
   }
 
+  logout(): void {
+    this.reset();
+    this.tab = "login";
+  }
+
   register() {
-    var data = {
-      username: this.username,
-      password: this.password,
-      name: this.name,
-      phone: this.phone,
-      dob: this.dob,
-      email: this.email
-    }
-    console.log(data)
-    // this.httpClient.post("/v1/account", {
+    // var data = {
     //   username: this.username,
     //   password: this.password,
     //   name: this.name,
     //   phone: this.phone,
     //   dob: this.dob,
     //   email: this.email
-    // }).subscribe((res) => {
-    //   console.log(res);
-    // })
+    // }
+    // console.log(data)
+    this.httpClient.post("/v1/account", {
+      username: this.username,
+      password: this.password,
+      name: this.name,
+      phone: this.phone,
+      dob: this.dob,
+      email: this.email
+    }).subscribe((res) => {
+      if (res.status == "false") {
+        this.error = true;
+      } else {
+        this.tab = "info";
+        this.email = this.email || "N/A";
+        this.phone = this.phone || "N/A";
+        this.dob = this.dob || "N/A";
+        this.name = this.name || "N/A";
+      }
+    })
   }
 }

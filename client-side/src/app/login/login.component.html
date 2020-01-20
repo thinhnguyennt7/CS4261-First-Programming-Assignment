@@ -15,8 +15,11 @@
 					<input type="password" required matInput placeholder="Password" 
 					[(ngModel)]="password" formControlName="password">
 				</mat-form-field>
-				<mat-error *ngIf="form.get('username').hasError('required')">
+				<mat-error *ngIf="form.get('username').hasError('required') && !error">
 					Username required
+				</mat-error>
+				<mat-error *ngIf="error">
+					The criteria you provided does not exist.
 				</mat-error>
 			</div>
 			<div *ngIf="tab=='register'">
@@ -45,50 +48,52 @@
 					[(ngModel)]="password" formControlName="password">
 				</mat-form-field>
 				<mat-form-field class="example-full-width">
-					<input type="password" required matInput placeholder="Confirm password"
+					<input type="password" matInput placeholder="Confirm password"
 					[(ngModel)]="confirmPassword" formControlName="confirmPassword">
 				</mat-form-field>
-				<mat-error *ngIf="form.get('username').hasError('required')">
+				<mat-error *ngIf="form.get('username').hasError('required') && !error">
 					Username required
 				</mat-error>
-				<mat-error *ngIf="confirmPassword != password">
+				<mat-error *ngIf="confirmPassword != password && !error">
 					Password is not matched.
+				</mat-error>
+				<mat-error *ngIf="error">
+					Username already existed.
 				</mat-error>
 			</div>
 		</form>
 		<div class="centerlize">
 			<button *ngIf="tab=='login'" mat-raised-button [disabled]="!form.valid" color="primary" (click)="login()">Login</button>
-			<button *ngIf="tab=='register'" mat-raised-button [disabled]="!form.valid" color="primary" (click)="register()">Register</button>
+			<button *ngIf="tab=='register'" mat-raised-button [disabled]="!form.valid || confirmPassword != password" color="primary" (click)="register()">Register</button>
 		</div>
 	</div>
-	<div *ngIf="tab='info'">
+	<div *ngIf="tab=='info'">
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">Username</label>
-			<div class="col-sm-10 col-form-label">
+			<label class="col-sm-2 col-form-label divided">Username</label>
+			<div class="col-sm-10 col-form-label divided">
 				{{username}}
 			</div>
-			<label class="col-sm-2 col-form-label">Name</label>
-			<div class="col-sm-10 col-form-label">
+			<label class="col-sm-2 col-form-label divided">Name</label>
+			<div class="col-sm-10 col-form-label divided">
 				{{name}}
 			</div>
-			<label class="col-sm-2 col-form-label">Email</label>
-			<div class="col-sm-10 col-form-label">
+			<label class="col-sm-2 col-form-label divided">Email</label>
+			<div class="col-sm-10 col-form-label divided">
 				{{email}}
 			</div>
 
-			<label class="col-sm-2 col-form-label">Phone</label>
-			<div class="col-sm-10 col-form-label">
+			<label class="col-sm-2 col-form-label divided">Phone</label>
+			<div class="col-sm-10 col-form-label divided">
 				{{phone}}
 			</div>
 
-			<label class="col-sm-2 col-form-label">Date of Birth</label>
-			<div class="col-sm-10 col-form-label">
+			<label class="col-sm-2 col-form-label divided divided">Date of Birth</label>
+			<div class="col-sm-10 col-form-label divided">
 				{{dob}}
 			</div>
 		</div>
+		<div class="centerlize">
+			<button mat-raised-button color="primary" (click)="logout()">Logout</button>
+		</div>
 	</div>
-</mat-card>
-
-<mat-card>
-
 </mat-card>

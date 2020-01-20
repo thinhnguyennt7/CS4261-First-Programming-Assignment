@@ -22,3 +22,7 @@
 .marginTop10 {
   margin-top: 10px;
 }
+
+.divided {
+  border: 1px solid;
+}
