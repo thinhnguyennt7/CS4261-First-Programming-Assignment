@@ -18,3 +18,7 @@
   flex-flow: row;
   flex-wrap: wrap;
 }
+
+.marginTop10 {
+  margin-top: 10px;
+}
