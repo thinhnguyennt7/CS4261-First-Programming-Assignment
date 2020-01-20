@@ -39,7 +39,10 @@
 
 ### Frontend App 🖥
 * Change your directory to `client-side`
-
+	```
+	npm install && npm start
+	```
+	
 ---
 ## Contributors 👥
 + 1️⃣ [Thinh Nguyen](tnntech@gatech.edu)
