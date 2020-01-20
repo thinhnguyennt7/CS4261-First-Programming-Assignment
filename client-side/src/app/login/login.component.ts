@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../http-client.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,14 @@ import { HttpClientService } from '../http-client.service';
 export class LoginComponent implements OnInit {
 
   public tab: string = "login";
-  public username: string;
+  public email: string;
   public password: string;
+  public confirmPassword: string;
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('',[Validators.required])
+  });
 
   constructor(private httpClient: HttpClientService) { }
 
@@ -26,14 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   reset(): void {
-    this.username = "";
+    this.email = "";
     this.password = "";
+    this.confirmPassword = ""
   }
 
   login() {
-    // console.log(this.tab);
-    // console.log(this.username);
-    // console.log(this.password)
     this.httpClient.get("/v1/account").subscribe((data) => {
       console.log(data);
     })
