@@ -44,23 +44,23 @@
 
 
 
-<mat-card style="max-width: 600px; min-width: 450px;">
-	<form >
-		<mat-tab-group mat-align-tabs="center" (selectedTabChange)="loginTabClick($event);reset()">
+<mat-card style="max-width: 600px; min-width: 450px; margin: 0 auto; margin-top: 10%;">
+	<form>
+		<mat-tab-group mat-stretch-tabs (selectedTabChange)="loginTabClick($event);reset()">
 			<mat-tab label="Login"></mat-tab>
 			<mat-tab label="Register"></mat-tab>
 		</mat-tab-group>
 		<div *ngIf="tab=='login'">
-			<mat-form-field class="example-full-width">
-				<input required matInput placeholder="Email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+			<mat-form-field class="example-full-width marginTop10">
+				<input required matInput placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
 			</mat-form-field>
 			<mat-form-field class="example-full-width">
 				<input type="password" required matInput placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
 			</mat-form-field>
 		</div>
 		<div *ngIf="tab=='register'">
-			<mat-form-field class="example-full-width">
-				<input required matInput placeholder="Email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+			<mat-form-field class="example-full-width marginTop10">
+				<input required matInput placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
 			</mat-form-field>
 			<mat-form-field class="example-full-width">
 				<input type="password" required matInput placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
