@@ -7,16 +7,25 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   public tab: string = "login";
-  public email: string;
-  public password: string;
-  public confirmPassword: string;
+  public email: string = "";
+  public password: string = "";
+  public confirmPassword: string = "";
+  public username: string = "";
+  public dob: string = "";
+  public phone: string = "";
+  public name: string = "";
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('',[Validators.required])
+    name: new FormControl(''),
+    phone: new FormControl(''),
+    dob: new FormControl(''),
+    email: new FormControl(''),
+    confirmPassword: new FormControl('')
   });
 
   constructor(private httpClient: HttpClientService) { }
@@ -33,14 +42,39 @@ export class LoginComponent implements OnInit {
   }
 
   reset(): void {
-    this.email = "";
+    this.username = "";
     this.password = "";
-    this.confirmPassword = ""
+    this.confirmPassword = "";
+    this.email = "";
+    this.dob = "";
+    this.phone = "";
   }
 
   login() {
     this.httpClient.get("/v1/account").subscribe((data) => {
       console.log(data);
     })
+  }
+
+  register() {
+    var data = {
+      username: this.username,
+      password: this.password,
+      name: this.name,
+      phone: this.phone,
+      dob: this.dob,
+      email: this.email
+    }
+    console.log(data)
+    // this.httpClient.post("/v1/account", {
+    //   username: this.username,
+    //   password: this.password,
+    //   name: this.name,
+    //   phone: this.phone,
+    //   dob: this.dob,
+    //   email: this.email
+    // }).subscribe((res) => {
+    //   console.log(res);
+    // })
   }
 }
