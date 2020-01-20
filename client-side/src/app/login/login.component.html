@@ -45,33 +45,53 @@
 
 
 <mat-card style="max-width: 600px; min-width: 450px;">
-	<form >
+	<form [formGroup]="form">
 		<mat-tab-group mat-align-tabs="center" (selectedTabChange)="loginTabClick($event);reset()">
 			<mat-tab label="Login"></mat-tab>
 			<mat-tab label="Register"></mat-tab>
 		</mat-tab-group>
 		<div *ngIf="tab=='login'">
 			<mat-form-field class="example-full-width">
-				<input required matInput placeholder="Email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+				<input required matInput placeholder="Email" 
+				[(ngModel)]="email" formControlName="email">
 			</mat-form-field>
 			<mat-form-field class="example-full-width">
-				<input type="password" required matInput placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+				<input type="password" required matInput placeholder="Password" 
+				[(ngModel)]="password" formControlName="password">
 			</mat-form-field>
+			<mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+				Please enter a valid email address
+			</mat-error>
+			<mat-error *ngIf="form.get('email').hasError('required')">
+				Email required
+			</mat-error>
 		</div>
 		<div *ngIf="tab=='register'">
 			<mat-form-field class="example-full-width">
-				<input required matInput placeholder="Email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+				<input required matInput placeholder="Email" 
+				[(ngModel)]="email" formControlName="email">
 			</mat-form-field>
 			<mat-form-field class="example-full-width">
-				<input type="password" required matInput placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+				<input type="password" required matInput placeholder="Password" 
+				[(ngModel)]="password" formControlName="password">
 			</mat-form-field>
 			<mat-form-field class="example-full-width">
-				<input type="password" required matInput placeholder="Confirm password">
+				<input type="password" required matInput placeholder="Confirm password"
+				[(ngModel)]="confirmPassword" formControlName="password">
 			</mat-form-field>
+			<mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+				Please enter a valid email address
+			</mat-error>
+			<mat-error *ngIf="form.get('email').hasError('required')">
+				Email required
+			</mat-error>
+			<mat-error *ngIf="!form.get('email').hasError('email') && !form.get('email').hasError('required') && (confirmPassword != password)">
+				Password is not matched.
+			</mat-error>
 		</div>
 	</form>
 	<div class="centerlize">
-		<button *ngIf="tab=='login'" mat-raised-button color="primary" (click)="login()">Login</button>
-		<button *ngIf="tab=='register'" mat-raised-button color="primary" (click)="register()">Register</button>
+		<button *ngIf="tab=='login'" mat-raised-button [disabled]="!form.valid" color="primary" (click)="login()">Login</button>
+		<button *ngIf="tab=='register'" mat-raised-button [disabled]="!form.valid" color="primary" (click)="register()">Register</button>
 	</div>
 </mat-card>
