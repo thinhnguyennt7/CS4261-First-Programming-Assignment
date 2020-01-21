@@ -2,6 +2,20 @@
 * CS4261: First Assignment Program
 ---
 ## Getting Started 🚀
+### Information
+* This web application allow users to create an account with their information and store it to the database
+* Users can always retrieve their information if they have the required criteria (username and password)
+
+### Frontend App 🖥
+* To open and run the webpage, to to this link
+	```
+	https://cs4261-d4866.firebaseapp.com
+	```
+* Change your directory to `client-side`
+	```
+	npm install && npm start
+	```
+
 ### Backend Services 🐍
 * Change your directory to `server-side`
 * Create a file name `.env` and insert these lines
@@ -36,16 +50,6 @@
 	Heroku Dashboard: https://dashboard.heroku.com/apps/cs4261-assignment
 	Firebase: https://console.firebase.google.com/u/0/project/cs4261-d4866/database/cs4261-d4866/data
 	Webpage: https://cs4261-d4866.firebaseapp.com
-	```
-
-### Frontend App 🖥
-* To open and run the webpage, to to this link
-	```
-	https://cs4261-d4866.firebaseapp.com
-	```
-* Change your directory to `client-side`
-	```
-	npm install && npm start
 	```
 	
 ---
