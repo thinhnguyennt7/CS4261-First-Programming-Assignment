@@ -35,9 +35,14 @@
 	Github: https://github.com/thinhnguyennt7/CS4261-First-Programming-Assignment
 	Heroku Dashboard: https://dashboard.heroku.com/apps/cs4261-assignment
 	Firebase: https://console.firebase.google.com/u/0/project/cs4261-d4866/database/cs4261-d4866/data
+	Webpage: https://cs4261-d4866.firebaseapp.com
 	```
 
 ### Frontend App 🖥
+* To open and run the webpage, to to this link
+	```
+	https://cs4261-d4866.firebaseapp.com
+	```
 * Change your directory to `client-side`
 	```
 	npm install && npm start
@@ -45,5 +50,5 @@
 	
 ---
 ## Contributors 👥
-+ 1️⃣ [Thinh Nguyen](tnntech@gatech.edu)
-+ 2️⃣ [Tuan Nguyen](atuannguyen1101@gatech.edu)
++ 1️⃣ [Thinh Nguyen](https://github.com/thinhnguyennt7)
++ 2️⃣ [Tuan Nguyen](https://github.com/atuannguyen1101)
