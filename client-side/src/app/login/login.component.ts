@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClientService } from '../http-client.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public tab: string = "login";
   public email: string = "";
@@ -31,16 +31,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private httpClient: HttpClientService) { }
 
-  ngOnInit() { }
-
-  test() {
-    console.log(this.form)
-  }
-
-  onChanges() {
-    console.log(this.form);
-  }
-
   loginTabClick(event: any): void {
     if (event.index == 0) {
       this.tab = "login";
@@ -57,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.email = "";
     this.dob = "";
     this.phone = "";
+    this.name = "";
   }
 
   login() {

@@ -26,3 +26,7 @@
 .divided {
   border: 1px solid;
 }
+
+.title {
+  font-weight: bold;
+}
