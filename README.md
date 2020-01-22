@@ -70,6 +70,17 @@
 	```
 
 ---
+## UI View
+* Mobile
+	![login](./client-side/Images/mobile-signin.png)
+	![signup](./client-side/Images/mobile-signup.png)
+	![dashboard](./client-side/Images/mobile-dashboard.png)
+* Website
+	![login](./client-side/Images/web-login.png)
+	![signup](./client-side/Images/web-signup.png)
+	![dashboard](./client-side/Images/web-dashboard.png)
+
+---
 ## Contributors 👥
 + 1️⃣ [Thinh Nguyen](https://github.com/thinhnguyennt7)
 + 2️⃣ [Tuan Nguyen](https://github.com/atuannguyen1101)
