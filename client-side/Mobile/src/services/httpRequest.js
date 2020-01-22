@@ -11,7 +11,7 @@ const httpGet = (endpoint) => {
 
 const httpPost = (endpoint, data) => {;
     return new Promise(resolve => {
-        axios.post(`${baseURL}/${endpoint}`, data)
+        axios.post(`${baseURL}/${endpoint}`, JSON.stringify(data),{headers:{"Content-Type" : "application/json"}})
         .then(response => resolve(response))
         .catch(error => resolve(error));
     });

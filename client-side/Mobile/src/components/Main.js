@@ -54,8 +54,14 @@ export default class Main extends Component {
         return (
             <View style={styles.mainView}>
                 <TextInput style={styles.fieldInputMargin} label={META.LOGIN.USERNAME} value={this.state.username} onChangeText={username => this.setState({ username }, () => this.inputValidator())} />
-                <TextInput style={styles.fieldInputMargin} label={META.LOGIN.PASSWORD} value={this.state.password} onChangeText={password => this.setState({ password }, () => this.inputValidator())} />
-                <Button mode='contained' style={styles.submitButton} onPress={this.buttonClicked} disabled={!this.state.loginInValidInput}>
+                <TextInput 
+                    style={styles.fieldInputMargin} 
+                    label={META.LOGIN.PASSWORD} 
+                    value={this.state.password} 
+                    onChangeText={password => this.setState({ password }, () => this.inputValidator())} 
+                    secureTextEntry
+                />
+                <Button mode='contained' style={styles.submitButton} onPress={this.loginLogic} disabled={!this.state.loginInValidInput}>
                     {META.BUTTON.LOGIN}
                 </Button>
             </View>
@@ -96,9 +102,22 @@ export default class Main extends Component {
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.NAME} value={this.state.name} onChangeText={name => this.setState({ name }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.EMAIL} value={this.state.email} onChangeText={email => this.setState({ email }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.DOB} value={this.state.dob} onChangeText={dob => this.setState({ dob }), () => this.inputValidator()} />
-                <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.PASSWORD} value={this.state.password} onChangeText={password => this.setState({ password }, () => this.inputValidator())} />
-                <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.REPEAT_PASSWORD} value={this.state.repeatPassword} onChangeText={repeatPassword => this.setState({ repeatPassword }, () => this.inputValidator())} />
-                <Button mode='contained' style={styles.submitButton} onPress={this.buttonClicked} disabled={!this.state.signUpValidInput}>
+                <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.PHONE} value={this.state.phone} onChangeText={phone => this.setState({ phone }), () => this.inputValidator()} />
+                <TextInput 
+                    style={styles.fieldInputMargin} 
+                    label={META.SIGN_UP.PASSWORD} 
+                    value={this.state.password} 
+                    onChangeText={password => this.setState({ password }, () => this.inputValidator())} 
+                    secureTextEntry
+                />
+                <TextInput 
+                    style={styles.fieldInputMargin} 
+                    label={META.SIGN_UP.REPEAT_PASSWORD} 
+                    value={this.state.repeatPassword} 
+                    onChangeText={repeatPassword => this.setState({ repeatPassword }, () => this.inputValidator())} 
+                    secureTextEntry
+                />
+                <Button mode='contained' style={styles.submitButton} onPress={this.signupLogic} disabled={!this.state.signUpValidInput}>
                     {META.BUTTON.SIGN_UP}
                 </Button>
             </View>
@@ -167,11 +186,47 @@ export default class Main extends Component {
     loginLogic = () => {
         // Call HTTP.httpGet to get data
         // Return a promise
+        HTTP.httpPost("v1/account/verify", {
+            username: this.state.username,
+            password: this.state.password
+        }).then(res => {
+            if (res.data["status"] == "true") {
+                HTTP.httpGet("v1/account/" + this.state.username)
+                .then(res => {
+                    this.buttonClicked();
+                    var data = res.data.data;
+                    this.state.dataCollected.username = data["username"] || "N/A";
+                    this.state.dataCollected.name = data["name"] || "N/A";
+                    this.state.dataCollected.phone = data["phone"] || "N/A";
+                    this.state.dataCollected.dob = data["dob"] || "N/A";
+                    this.state.dataCollected.email = data["email"] || "N/A";
+                    this.forceUpdate()
+                })
+            }
+        })
     };
 
     signupLogic = () => {
         // Call HTTP.httpPost to sign up
         // Return a promise
+        HTTP.httpPost("v1/account", {
+            username: this.state.username,
+            password: this.state.password,
+            name: this.state.name,
+            phone: this.state.phone,
+            dob: this.state.dob,
+            email: this.state.email
+        }).then(res => {
+            console.log(res.data);
+            if (res.data["status"] == "true") {
+                this.state.dataCollected.username = this.state.username || "N/A";
+                this.state.dataCollected.name = this.state.name || "N/A";
+                this.state.dataCollected.phone = this.state.phone || "N/A";
+                this.state.dataCollected.dob = this.state.dob || "N/A";
+                this.state.dataCollected.email = this.state.email || "N/A";
+                this.buttonClicked();
+            }
+        })
     };
 
     logoutClicked = () => {
