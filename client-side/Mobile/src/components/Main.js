@@ -120,20 +120,20 @@ export default class Main extends Component {
                 <Text style={styles.errorText}>{this.state.registerUsernameError}</Text>
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.NAME} value={this.state.name} onChangeText={name => this.setState({ name }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.EMAIL} value={this.state.email} onChangeText={email => this.setState({ email }, () => this.inputValidator())} />
-                <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.DOB} value={this.state.dob} onChangeText={dob => this.setState({ dob }), () => this.inputValidator()} />
+                <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.DOB} value={this.state.dob} onChangeText={dob => this.setState({ dob }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.PHONE} value={this.state.phone} onChangeText={phone => this.setState({ phone }), () => this.inputValidator()} />
-                <TextInput 
-                    style={styles.fieldInputMargin} 
-                    label={META.SIGN_UP.PASSWORD} 
-                    value={this.state.password} 
-                    onChangeText={password => this.setState({ password }, () => this.inputValidator())} 
+                <TextInput
+                    style={styles.fieldInputMargin}
+                    label={META.SIGN_UP.PASSWORD}
+                    value={this.state.password}
+                    onChangeText={password => this.setState({ password }, () => this.inputValidator())}
                     secureTextEntry
                 />
-                <TextInput 
-                    style={styles.fieldInputMargin} 
-                    label={META.SIGN_UP.REPEAT_PASSWORD} 
-                    value={this.state.repeatPassword} 
-                    onChangeText={repeatPassword => this.setState({ repeatPassword }, () => this.inputValidator())} 
+                <TextInput
+                    style={styles.fieldInputMargin}
+                    label={META.SIGN_UP.REPEAT_PASSWORD}
+                    value={this.state.repeatPassword}
+                    onChangeText={repeatPassword => this.setState({ repeatPassword }, () => this.inputValidator())}
                     secureTextEntry
                 />
                 <Text style={styles.errorText}>{this.state.registerPasswordError}</Text>
