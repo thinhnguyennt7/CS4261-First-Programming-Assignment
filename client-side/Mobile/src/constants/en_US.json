@@ -1,0 +1,28 @@
+{
+    "LOGIN": {
+        "USERNAME": "Username",
+        "PASSWORD": "Password"
+    },
+    "SIGN_UP": {
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "REPEAT_PASSWORD": "Password",
+        "DOB": "Date of Birth",
+        "EMAIL": "Email Address",
+        "PHONE": "Phone Number",
+        "NAME": "Full Name"
+    },
+    "INFORMATION": {
+        "USERNAME": "Username",
+        "DOB": "Date of Birth",
+        "PHONE": "Phone Number",
+        "EMAIL": "Email Address",
+        "FULL_NAME": "Full Name"
+    },
+    "ERROR": {
+        "NOT_EXIST": "This criteria does not exist!",
+        "INVALID_PASS": "Your Password is not correct!",
+        "USERNAME_REQUIRE": "Username Require",
+        "PASSWORD_REQUIRE": "Password Require"
+    }
+}
