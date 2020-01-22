@@ -6,7 +6,7 @@
     "SIGN_UP": {
         "USERNAME": "Username",
         "PASSWORD": "Password",
-        "REPEAT_PASSWORD": "Password",
+        "REPEAT_PASSWORD": "Repeat Your Password",
         "DOB": "Date of Birth",
         "EMAIL": "Email Address",
         "PHONE": "Phone Number",
@@ -24,5 +24,14 @@
         "INVALID_PASS": "Your Password is not correct!",
         "USERNAME_REQUIRE": "Username Require",
         "PASSWORD_REQUIRE": "Password Require"
+    },
+    "BUTTON": {
+        "LOGIN": "Login",
+        "SIGN_UP": "Sign up",
+        "SIGN_OUT": "Sign out"
+    },
+    "STEPPER": {
+        "NEED_ACCT": "Let Sign Up",
+        "ALREADY_ACCT": "Let Sign In"
     }
 }
