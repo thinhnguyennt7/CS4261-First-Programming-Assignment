@@ -1,5 +1,5 @@
 # Mobile & Service Network Coverage
-* CS4261: First Assignment Program
+* CS4261: First Coding Assignment
 ---
 ## Getting Started 🚀
 ### Information
@@ -11,10 +11,27 @@
 	```
 	https://cs4261-d4866.firebaseapp.com
 	```
-* Change your directory to `client-side`
-	```
-	npm install && npm start
-	```
+* For development, change your directory to `client-side`
+	* **Mobile App**
+		* *Make sure that you have react native and other support libraries to able to run this project. You can find everything at [React-Native](https://facebook.github.io/react-native/docs/getting-started)*
+		* *To install react native on your local machine: `npm install react-native`*
+		* *After you got everything installed*
+			```
+			cd Mobile/
+			bash installation.sh
+			```
+		* *To run the project on your local machine*
+			* First try to run `npx react-native run-ios --simulator "iPhone 11 Pro Max"` on the command line
+			* If not working then try:
+				* Open **Xcode** and go to the folder **/client-side/Mobile/ios/** and then import file **Mobile.xcworkspace**
+				* Then run the project by using the start icon.
+		* **Troubleshooting**
+			* [React-native troubleshoot if not able to run](https://facebook.github.io/react-native/docs/troubleshooting#content)
+	* **Web App**
+		* *Change the directory to /Web*
+			```
+			npm install && npm start
+			```
 
 ### Backend Services 🐍
 * Change your directory to `server-side`
@@ -51,7 +68,7 @@
 	Firebase: https://console.firebase.google.com/u/0/project/cs4261-d4866/database/cs4261-d4866/data
 	Webpage: https://cs4261-d4866.firebaseapp.com
 	```
-	
+
 ---
 ## Contributors 👥
 + 1️⃣ [Thinh Nguyen](https://github.com/thinhnguyennt7)
