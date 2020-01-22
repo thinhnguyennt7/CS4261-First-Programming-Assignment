@@ -20,6 +20,9 @@ const mainState = {
     loginInValidInput: false,
     signUpValidInput: false,
     dataCollected: {},
+    loginError: '',
+    registerUsernameError: '',
+    registerPasswordError: ''
 };
 
 export default class Main extends Component {
@@ -46,9 +49,17 @@ export default class Main extends Component {
             foundError: false,
             loginInValidInput: false,
             signUpValidInput: false,
-            dataCollected: {},
+            dataCollected: {}
         });
     };
+
+    clearAllErrors = () => {
+        this.setState({
+            loginError: '',
+            registerPasswordError: '',
+            registerUsernameError: ''
+        })
+    }
 
     loginView = () => {
         return (
@@ -61,6 +72,7 @@ export default class Main extends Component {
                     onChangeText={password => this.setState({ password }, () => this.inputValidator())} 
                     secureTextEntry
                 />
+                <Text style={styles.errorText}>{this.state.loginError}</Text>
                 <Button mode='contained' style={styles.submitButton} onPress={this.loginLogic} disabled={!this.state.loginInValidInput}>
                     {META.BUTTON.LOGIN}
                 </Button>
@@ -88,17 +100,24 @@ export default class Main extends Component {
             && (this.state.password === this.state.repeatPassword);
             this.setState({ signUpValidInput: (validCondition) ? true : false });
         }
+        if (this.state.password !== this.state.repeatPassword) {
+            this.setState({ registerPasswordError: 'Password does not matched.' });
+        } else {
+            this.clearAllErrors();
+        }
     };
 
     stepperViewClickEvent = (index) => {
         this.setState({ currentView: index });
         this.clearAllInput();
+        this.clearAllErrors();
     };
 
     signupView = () => {
         return (
             <View style={styles.mainView}>
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.USERNAME} value={this.state.username} onChangeText={username => this.setState({ username }, () => this.inputValidator())} />
+                <Text style={styles.errorText}>{this.state.registerUsernameError}</Text>
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.NAME} value={this.state.name} onChangeText={name => this.setState({ name }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.EMAIL} value={this.state.email} onChangeText={email => this.setState({ email }, () => this.inputValidator())} />
                 <TextInput style={styles.fieldInputMargin} label={META.SIGN_UP.DOB} value={this.state.dob} onChangeText={dob => this.setState({ dob }), () => this.inputValidator()} />
@@ -117,6 +136,7 @@ export default class Main extends Component {
                     onChangeText={repeatPassword => this.setState({ repeatPassword }, () => this.inputValidator())} 
                     secureTextEntry
                 />
+                <Text style={styles.errorText}>{this.state.registerPasswordError}</Text>
                 <Button mode='contained' style={styles.submitButton} onPress={this.signupLogic} disabled={!this.state.signUpValidInput}>
                     {META.BUTTON.SIGN_UP}
                 </Button>
@@ -191,6 +211,7 @@ export default class Main extends Component {
             password: this.state.password
         }).then(res => {
             if (res.data["status"] == "true") {
+                this.clearAllErrors();
                 HTTP.httpGet("v1/account/" + this.state.username)
                 .then(res => {
                     this.buttonClicked();
@@ -202,6 +223,8 @@ export default class Main extends Component {
                     this.state.dataCollected.email = data["email"] || "N/A";
                     this.forceUpdate()
                 })
+            } else {
+                this.setState({ loginError: 'The criteria provided does not matched.'})
             }
         })
     };
@@ -219,12 +242,15 @@ export default class Main extends Component {
         }).then(res => {
             console.log(res.data);
             if (res.data["status"] == "true") {
+                this.clearAllErrors();
                 this.state.dataCollected.username = this.state.username || "N/A";
                 this.state.dataCollected.name = this.state.name || "N/A";
                 this.state.dataCollected.phone = this.state.phone || "N/A";
                 this.state.dataCollected.dob = this.state.dob || "N/A";
                 this.state.dataCollected.email = this.state.email || "N/A";
                 this.buttonClicked();
+            } else {
+                this.setState({ registerUsernameError: 'Username already exists.'});
             }
         })
     };
